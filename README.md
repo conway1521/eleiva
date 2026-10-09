@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ELEIVA
 
-## Getting Started
+Website for ELEIVA olive oil. Built with Next.js (App Router), TypeScript and Tailwind CSS.
 
-First, run the development server:
+## Run it locally
+
+You need Node.js 20 or later.
 
 ```bash
+git clone https://github.com/conway1521/eleiva.git
+cd eleiva
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000. The page reloads as you save.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things are
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| What you want to change | File |
+| --- | --- |
+| Any text on the site | `lib/site.ts` |
+| Colours and fonts | `app/globals.css`, `app/layout.tsx` |
+| Page layout and sections | `app/page.tsx` |
+| Header and logo | `app/components/Header.tsx`, `app/components/Logo.tsx` |
+| Feedback form | `app/components/FeedbackForm.tsx` |
+| Feedback validation | `app/actions.ts` |
+| Where feedback is stored | `lib/feedback.ts` |
 
-## Learn More
+## Working together
 
-To learn more about Next.js, take a look at the following resources:
+`main` should always be in a working state. For each change:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git checkout main
+git pull
+git checkout -b short-description-of-change
+# make your changes
+npm run lint
+npm run build
+git add -A
+git commit -m "Describe the change"
+git push -u origin short-description-of-change
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Then open a pull request on GitHub and ask the other person to look at it before merging.
 
-## Deploy on Vercel
+## Not done yet
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Feedback is only written to the server log (`lib/feedback.ts`). It needs a database or an email send before launch.
+- The copy in `lib/site.ts` marked "Placeholder" or "To be confirmed" needs real details.
+- The logo in `app/components/Logo.tsx` is a placeholder.
+- The pre-order section is a stub. Contact details and amount are still to be added.
